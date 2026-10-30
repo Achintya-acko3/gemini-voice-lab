@@ -1,0 +1,21 @@
+{
+  "name": "gemini-voice-lab",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "test": "node --test",
+    "build": "node build.mjs",
+    "prestart": "npm run build"
+  },
+  "dependencies": {
+    "@google/genai": "2.32.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

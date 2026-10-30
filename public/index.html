@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gemini · Voice Lab</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+  <header><a class="brand" href="/">✳ <span>VOICE LAB</span></a><span class="header-note">GEMINI / LIVE EXPERIMENTS</span><span id="connection" class="badge">Disconnected</span></header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">HEAR THE ANSWER. SEE THE REASONING SUMMARY.</p><h1>A conversation, with context.</h1><p class="subtitle">Test Gemini’s live voice and watch its thought summaries arrive.</p></div><button id="export" class="secondary">↓ Export session</button></div>
+    <div class="workspace">
+      <aside class="settings panel"><div class="panel-title"><h2>Session setup</h2><span class="small-label">01</span></div>
+        <fieldset id="settings"><label>Model<select id="model"><option value="gemini-3.8-live-extended-thinking">Gemini 3.8 Extended Thinking</option><option value="gemini-3.1-flash-live-preview">Gemini 3.1 Flash Live</option></select></label>
+        <p id="model-note" class="hint">gemini-3.8-live-extended-thinking</p>
+        <label>Gemini API key<input id="key" type="password" placeholder="Paste your API key" autocomplete="off" spellcheck="false"></label><p id="key-note" class="hint">Used only to create a temporary connection token. Never saved.</p>
+        <div class="settings-pair"><label>Thinking level<select id="level"><option value="low">Low</option><option value="medium">Medium</option><option value="high" selected>High</option></select></label><label>Voice<select id="voice"><option>Kore</option><option>Puck</option><option>Aoede</option><option>Charon</option><option>Fenrir</option></select></label></div>
+        <label>System instruction<textarea id="instruction" rows="5">You are a helpful voice assistant. Give clear, conversational answers. Explain conclusions when useful.</textarea></label>
+        <div class="enabled"><span>Thought summaries</span><span>ON</span></div></fieldset>
+        <button id="connect" class="primary">Start session <span>↗</span></button><button id="disconnect" class="secondary" disabled>End session</button>
+        <p class="hint footnote">Use headphones for a cleaner conversation. Microphone access starts only when you turn it on.</p>
+        <div class="sdk-tag"><span class="dot"></span> Native Google GenAI SDK</div>
+      </aside>
+      <section class="conversation panel"><div class="panel-title"><h2>Conversation</h2><span id="message-count" class="small-label">0 MESSAGES</span></div>
+        <div id="conversation" class="feed" role="log" aria-label="Conversation transcript"><div class="empty"><div class="empty-icon">◌</div><h3>Let’s hear it.</h3><p>Start a session, then turn on your mic<br>or send a message below.</p></div></div>
+        <div class="audio-controls"><button id="mic" class="secondary" disabled>◉ Turn mic on</button><div class="meter"><div id="meter-fill"></div></div><span id="audio-status">Mic off</span></div>
+        <form id="composer"><input id="prompt" aria-label="Message" placeholder="Or type something to Gemini…" disabled><button id="send" aria-label="Send message" disabled>↑</button></form>
+      </section>
+      <section class="thinking panel"><div class="panel-title"><h2><span class="spark">✧</span> Thought summaries</h2><span id="reasoning" class="small-label">WAITING</span></div>
+        <div class="thinking-note">Summaries returned by Gemini’s API. Full internal reasoning is not exposed.</div>
+        <div id="thoughts" class="feed" role="log" aria-label="Thought summaries"><div class="empty"><div class="thought-glyph">✧</div><h3>A window into the answer.</h3><p>When Gemini returns a thought summary,<br>it appears here as it streams.</p><span class="code-chip">includeThoughts: true</span></div></div>
+        <div class="stats"><div><span>Thought chunks</span><strong id="thought-count">0</strong></div><div><span>Total tokens</span><strong id="tokens">—</strong></div></div>
+      </section>
+    </div>
+    <div id="notice" role="status" aria-live="polite">Ready when you are. Add an API key to start testing.</div>
+    <section class="comparison panel"><div class="panel-title"><h2>Model comparison</h2><button id="sample" class="secondary">Use comparison prompt</button></div><p class="hint">Test the same prompt in a fresh session on each model, with the same thinking level, voice, and instruction. End the session to switch models. Zero summary chunks records an observation, not a confirmed model bug.</p><div class="table-scroll"><table><thead><tr><th>Run / model</th><th>Thinking</th><th>Summary chunks</th><th>Summary characters</th><th>Utterances</th><th>State</th></tr></thead><tbody id="runs"><tr><td colspan="6">No runs yet. Both models request includeThoughts: true.</td></tr></tbody></table></div></section>
+    <details class="events panel"><summary>Session events <span id="event-count">0</span><span class="hint">Payloads exclude audio data and credentials</span></summary><pre id="events">No events yet.</pre></details>
+    <footer><span>GEMINI LIVE · 3.8 / 3.1 COMPARISON</span><a href="https://ai.google.dev/gemini-api/docs/live-api/thinking" target="_blank" rel="noreferrer">Live API documentation ↗</a></footer>
+  </main><script type="module" src="/app.js"></script>
+</body></html>
